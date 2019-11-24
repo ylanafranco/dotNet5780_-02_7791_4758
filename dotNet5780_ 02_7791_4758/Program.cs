@@ -37,15 +37,16 @@ namespace dotNet5780__02_7791_4758
         {
             List<Host> lsHosts; lsHosts = new List<Host>();
             lsHosts.Add((new Host(1, rand.Next(1, 5))));
-            lsHosts.Add((new Host(2, rand.Next(1, 5))));
-            lsHosts.Add((new Host(3, rand.Next(1, 5))));
-            lsHosts.Add((new Host(4, rand.Next(1, 5))));
-            lsHosts.Add((new Host(5, rand.Next(1, 5))));
+            //lsHosts.Add((new Host(2, rand.Next(1, 5))));
+            //lsHosts.Add((new Host(3, rand.Next(1, 5))));
+            //lsHosts.Add((new Host(4, rand.Next(1, 5))));
+            //lsHosts.Add((new Host(5, rand.Next(1, 5))));
 
-            foreach (var item in lsHosts)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            //foreach (var item in lsHosts)
+            //{
+            //    Console.WriteLine("fraise");
+            //    Console.WriteLine(item.ToString());
+            //}
 
             for (int i = 0; i < 100; i++)
             {
@@ -53,29 +54,23 @@ namespace dotNet5780__02_7791_4758
                 GuestRequest gs2 = new GuestRequest();
                 GuestRequest gs3 = new GuestRequest();
 
-
                 foreach (var host in lsHosts)
                 {
                     if (!gs1.IsApproved) gs1 = CreateRandomRequest();
                     if (!gs2.IsApproved) gs2 = CreateRandomRequest();
                     if (!gs3.IsApproved) gs3 = CreateRandomRequest();
 
+                    
                     switch (rand.Next(1, 4))
                     {
                         case 1:
                             host.AssignRequests(gs1);
-                            //Console.WriteLine(gs1.ToString());
                             break;
                         case 2:
                             host.AssignRequests(gs1, gs2);
-                            //Console.WriteLine(gs1.ToString());
-                            //Console.WriteLine(gs2.ToString());
                             break;
                         case 3:
                             host.AssignRequests(gs1, gs2, gs3);
-                            //Console.WriteLine(gs1.ToString());
-                            //Console.WriteLine(gs2.ToString());
-                            //Console.WriteLine(gs3.ToString());
                             break;
                         default:
                             break;
@@ -86,7 +81,7 @@ namespace dotNet5780__02_7791_4758
             //Create dictionary for all units <unitkey, occupancy_percentage>             
             Dictionary<long, float> dict = new Dictionary<long, float>();
             foreach (var host in lsHosts)
-            {                 //test Host IEnuramble is ok                 
+            {                 //test Host IEnumerable is ok                 
                 foreach (HostingUnit unit in host)
                 {
                     dict[unit.HostingUnitKey] = unit.GetAnnualBusyPercentage();
@@ -100,7 +95,7 @@ namespace dotNet5780__02_7791_4758
 
             //get max value key name in dictionary             
             long maxKey = dict.FirstOrDefault(x => x.Value == dict.Values.Max()).Key;
-            Console.WriteLine(maxKey);
+            //Console.WriteLine(maxKey);
 
             //find the Host that its unit has the maximum occupancy percentage             
             foreach (var host in lsHosts)
@@ -110,7 +105,6 @@ namespace dotNet5780__02_7791_4758
                 {
                     if (host[i].HostingUnitKey == maxKey)
                     {
-                        Console.WriteLine("coucou");
                         //sort this host by occupancy of its units                         
                         host.SortUnits();
                         //print this host detailes                         

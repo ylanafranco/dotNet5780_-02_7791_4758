@@ -29,7 +29,7 @@ namespace dotNet5780__02_7791_4758
             string result = " ";
             result += ("the host id is " + this.HostKey + ", and has this Hosting Unit Collection:\n ");
             foreach (HostingUnit item in this.HostingUnitCollection)
-            {
+            {            
                 result += item.ToString() + "\n";
             }
             return result;
