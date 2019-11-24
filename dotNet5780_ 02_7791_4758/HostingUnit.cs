@@ -8,13 +8,15 @@ namespace dotNet5780__02_7791_4758
         // numero d'hebergement 
         private static int stSerialKey = 10000000;
         // numero d'hebergement hanohari
-        public int HostingUnitKey 
-        { 
-            get => stSerialKey; 
-            private set => stSerialKey++;
+        public int HostingUnitKey
+        {
+            get { return stSerialKey++; }
+            private set { this.HostingUnitKey = stSerialKey; }
         }
-        // matrix about the month and the date 
-        // peut etre changer a 13 et 32
+
+
+// matrix about the month and the date 
+// peut etre changer a 13 et 32
         private bool[,] diary = new bool[13, 32];
 
         public bool[,] Diary 
@@ -22,19 +24,27 @@ namespace dotNet5780__02_7791_4758
             get { return diary; }
         }
 
+        public HostingUnit()
+        {
+            init();
+        }
 
         public int GetAnnualBusyDays()
         {
             int BusyDay = 0;
             foreach (bool item in Diary)
             {
-                BusyDay += (item) ? 1 : 0;
+                //BusyDay += (item) ? 1 : 0;
+                if (item == true)
+                {
+                    BusyDay++;
+                }
 
             }
             return BusyDay;
         }
 
-        public void init()
+        private void init()
         {
             for (int i = 0; i < diary.GetLength(0); i++)
             {
@@ -47,7 +57,7 @@ namespace dotNet5780__02_7791_4758
 
         public float GetAnnualBusyPercentage()
         {
-            return GetAnnualBusyDays() / (12f * 31f);
+            return ((GetAnnualBusyDays()*100) /365);
         }
 
         public bool ApproveRequest(GuestRequest guestReq)
@@ -83,7 +93,7 @@ namespace dotNet5780__02_7791_4758
         {
             String result = " ";
             int count = 0;
-            result += ("The number of the hosting unit is {0}", HostingUnitKey);
+            result += String.Format("The number of the hosting unit is {0}", HostingUnitKey);
             for (int i = 1; i < 13; i++)
             {
 
@@ -102,7 +112,7 @@ namespace dotNet5780__02_7791_4758
 
                     if (flag == true)
                     {
-                        result += ("The host unit is busy since : {0}/{1}, to : {2}/{1}\n", tempj, i, tempj + count);
+                        result += String.Format("The host unit is busy since : {0}/{1}, to : {2}/{1}\n", tempj, i, tempj + count);
 
                     }
                     count = 0;
@@ -119,11 +129,11 @@ namespace dotNet5780__02_7791_4758
             return result;
         }
 
-        //ca je suis pas sur
-        internal static IEnumerator<HostingUnit> GetEnumerator()
-        {
-            yield return new HostingUnit();
-        }
+        ////ca je suis pas sur
+        //internal static IEnumerator<HostingUnit> GetEnumerator()
+        //{
+        //    yield return new HostingUnit();
+        //}
 
         int IComparable<HostingUnit>.CompareTo(HostingUnit other)
         {

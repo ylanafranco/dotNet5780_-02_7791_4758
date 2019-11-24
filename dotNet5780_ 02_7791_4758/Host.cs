@@ -9,30 +9,28 @@ namespace dotNet5780__02_7791_4758
     {
         public int HostKey; // id du mec
         // list d'hebergement qui appartiennent a une personne
-        public List<HostingUnit> HostingUnitCollection { get; internal set; }
+        public List<HostingUnit> HostingUnitCollection { get; private set; }
 
         public Host(int id, int hostUnitCollec)
         {
             this.HostKey = id;
-            for (int i = 1; i <= hostUnitCollec; i++)
+            HostingUnitCollection = new List<HostingUnit>();
+
+            for (int i = 0; i < hostUnitCollec; i++)
             {
                 this.HostingUnitCollection.Add(new HostingUnit());
 
             }
            
-            foreach (HostingUnit item in this.HostingUnitCollection)
-            {
-                item.init();
-            }
         }
 
         public override string ToString()
         {
             string result = " ";
-            result += ("the host id is {0}, and has this Hosting Unit Collection:\n ", HostKey);
+            result += ("the host id is " + this.HostKey + ", and has this Hosting Unit Collection:\n ");
             foreach (HostingUnit item in this.HostingUnitCollection)
             {
-                result += item.ToString();
+                result += item.ToString() + "\n";
             }
             return result;
         }
@@ -80,10 +78,10 @@ namespace dotNet5780__02_7791_4758
 
         //IEnumerator<HostingUnit> GetEnumerator()
         //{
-        //    return HostingUnit.GetEnumerator();
+        //    return this.GetEnumerator();
         //}
 
-        IEnumerator<HostingUnit> GetEnumerator()
+        public IEnumerator<HostingUnit> GetEnumerator()
         {
             return this.HostingUnitCollection.GetEnumerator();
         }
@@ -93,7 +91,6 @@ namespace dotNet5780__02_7791_4758
             return this.GetEnumerator();
         }
 
-        
 
         public HostingUnit this[int HostNumber]
         {
@@ -101,12 +98,12 @@ namespace dotNet5780__02_7791_4758
             get 
             {
 
-                for (int i = 0; i < HostingUnitCollection.Count; i++)
-                {
-                    if (HostingUnitCollection[i].HostingUnitKey == HostNumber)
-                        return HostingUnitCollection[i];
-                }
-                return null; 
+                //for (int i = 0; i < this.HostingUnitCollection.Count; i++)
+                //{
+                    //if (this.HostingUnitCollection[i].HostingUnitKey == HostNumber)
+                        return HostingUnitCollection[HostNumber];
+                //}
+                //return null; 
             }
         }
         

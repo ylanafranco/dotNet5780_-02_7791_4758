@@ -12,7 +12,7 @@ namespace dotNet5780__02_7791_4758
         {
             String result = " ";
             result += String.Format("Entry Date is : {0}, Release Date is {1}", EntryDate.ToShortDateString(), ReleaseDate.ToShortDateString());
-            result += ("is " + ((IsApproved) ? "" : "not ") + "approved");
+            result += String.Format("is " + ((IsApproved) ? "" : "not ") + "approved");
             return result;
         }
     }
