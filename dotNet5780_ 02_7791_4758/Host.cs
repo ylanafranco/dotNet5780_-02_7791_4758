@@ -78,29 +78,28 @@ namespace dotNet5780__02_7791_4758
             return true;
         }
 
+        //IEnumerator<HostingUnit> GetEnumerator()
+        //{
+        //    return HostingUnit.GetEnumerator();
+        //}
+
         IEnumerator<HostingUnit> GetEnumerator()
         {
-            return HostingUnit.GetEnumerator();
+            return this.HostingUnitCollection.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator) GetEnumerator();
+            return this.GetEnumerator();
         }
 
+        
 
         public HostingUnit this[int HostNumber]
         {
 
             get 
             {
-                //foreach (HostingUnit item in this.HostingUnitCollection)
-                //{
-                //    if (item.HostingUnitKey == HostNumber)
-                //    {
-                //        return item;
-                //    }
-                //}
 
                 for (int i = 0; i < HostingUnitCollection.Count; i++)
                 {
