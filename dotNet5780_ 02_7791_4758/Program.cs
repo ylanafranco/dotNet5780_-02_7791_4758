@@ -37,16 +37,10 @@ namespace dotNet5780__02_7791_4758
         {
             List<Host> lsHosts; lsHosts = new List<Host>();
             lsHosts.Add((new Host(1, rand.Next(1, 5))));
-            //lsHosts.Add((new Host(2, rand.Next(1, 5))));
-            //lsHosts.Add((new Host(3, rand.Next(1, 5))));
-            //lsHosts.Add((new Host(4, rand.Next(1, 5))));
-            //lsHosts.Add((new Host(5, rand.Next(1, 5))));
-
-            //foreach (var item in lsHosts)
-            //{
-            //    Console.WriteLine("fraise");
-            //    Console.WriteLine(item.ToString());
-            //}
+            lsHosts.Add((new Host(2, rand.Next(1, 5))));
+            lsHosts.Add((new Host(3, rand.Next(1, 5))));
+            lsHosts.Add((new Host(4, rand.Next(1, 5))));
+            lsHosts.Add((new Host(5, rand.Next(1, 5))));
 
             for (int i = 0; i < 100; i++)
             {
@@ -84,9 +78,7 @@ namespace dotNet5780__02_7791_4758
             {                 //test Host IEnumerable is ok                 
                 foreach (HostingUnit unit in host)
                 {
-                    dict[unit.HostingUnitKey] = unit.GetAnnualBusyPercentage();
-                    Console.WriteLine(unit.GetAnnualBusyPercentage());
-                    
+                    dict[unit.HostingUnitKey] = unit.GetAnnualBusyPercentage();                                       
                 }
             }
 
@@ -95,11 +87,11 @@ namespace dotNet5780__02_7791_4758
 
             //get max value key name in dictionary             
             long maxKey = dict.FirstOrDefault(x => x.Value == dict.Values.Max()).Key;
-            //Console.WriteLine(maxKey);
 
             //find the Host that its unit has the maximum occupancy percentage             
             foreach (var host in lsHosts)
             {
+                
                 //test indexer of Host                 
                 for (int i = 0; i < host.HostingUnitCollection.Count; i++)
                 {

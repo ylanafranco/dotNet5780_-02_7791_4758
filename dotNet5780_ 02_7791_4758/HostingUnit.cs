@@ -9,12 +9,13 @@ namespace dotNet5780__02_7791_4758
         private static int stSerialKey = 10000000;
 
         // numero d'hebergement hanohari
-        public int HostingUnitKey
-        {
-            get { return stSerialKey++; }
-            private set { this.HostingUnitKey = stSerialKey; }
-        }
+        //public int HostingUnitKey
+        //{
+        //    get { return stSerialKey; }
+        //    private set { this.HostingUnitKey = stSerialKey++; }
+        //}
 
+        public readonly long HostingUnitKey;
 
         // matrix about the month and the date 
         private bool[,] diary = new bool[13, 32];
@@ -26,6 +27,8 @@ namespace dotNet5780__02_7791_4758
 
         public HostingUnit()
         {
+            HostingUnitKey = stSerialKey;
+            stSerialKey++;
             init();
         }
 
@@ -96,8 +99,8 @@ namespace dotNet5780__02_7791_4758
         {
             String result = " ";
             int count = 0;
-            result += String.Format("The number of the hosting unit is {0}", HostingUnitKey);
-            printmat(diary);
+            result += String.Format("The number of the hosting unit is {0} \n", HostingUnitKey);
+            //printmat(diary);
             for (int i = 1; i < 13; i++)
             {
                 int j = 1;
@@ -140,13 +143,13 @@ namespace dotNet5780__02_7791_4758
             return GetAnnualBusyDays().CompareTo(other.GetAnnualBusyDays());
         }
 
-        public void printmat(bool[,] d)
-        {
-            Console.WriteLine("my diary is ");
-            for (int i = 0; i < 13; i++) 
-            { for (int j = 0; j < 32; j++)
-                    Console.Write("{0,-3}", d[i,j]);
-                Console.WriteLine(); }
-        }
+        //public void printmat(bool[,] d)
+        //{
+        //    Console.WriteLine("my diary is ");
+        //    for (int i = 0; i < 13; i++) 
+        //    { for (int j = 0; j < 32; j++)
+        //            Console.Write("{0,-3}", d[i,j]);
+        //        Console.WriteLine(); }
+        //}
     }
 }

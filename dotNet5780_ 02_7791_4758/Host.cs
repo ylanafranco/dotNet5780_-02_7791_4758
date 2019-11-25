@@ -76,11 +76,6 @@ namespace dotNet5780__02_7791_4758
             return true;
         }
 
-        //IEnumerator<HostingUnit> GetEnumerator()
-        //{
-        //    return this.GetEnumerator();
-        //}
-
         public IEnumerator<HostingUnit> GetEnumerator()
         {
             return this.HostingUnitCollection.GetEnumerator();
@@ -92,18 +87,14 @@ namespace dotNet5780__02_7791_4758
         }
 
 
-        public HostingUnit this[int HostNumber]
+        public HostingUnit this[int i]
         {
 
             get 
             {
-
-                //for (int i = 0; i < this.HostingUnitCollection.Count; i++)
-                //{
-                    //if (this.HostingUnitCollection[i].HostingUnitKey == HostNumber)
-                        return HostingUnitCollection[HostNumber];
-                //}
-                //return null; 
+                if (i < HostingUnitCollection.Count)
+                    return this.HostingUnitCollection[i];                                
+               return null; 
             }
         }
         
